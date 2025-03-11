@@ -12,7 +12,7 @@ typedef pair<int, int> ii;
 #define all(x) x.begin(),x.end()
 #define forn(i,n) for(int i = 0; i < n; i++)
 
-// CODIGO SE TIENE QUE MANEJAR BAJO LA PLANTILLA DE CodeBlockers();
+// CODIGO HECHO BAJO LA PLANTILLA DE CodeBlockers();
 
 // Asegurarse que las letras que se le pasen al Trie sean extrictamente en minusculas
 // o cambiar los argumentos dependiendo los caracteres que use (se puede optar por usar un mapa)

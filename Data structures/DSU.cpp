@@ -12,7 +12,7 @@ typedef pair<int, int> ii;
 #define all(x) x.begin(),x.end()
 #define forn(i,n) for(int i = 0; i < n; i++)
 
-// CODIGO SE TIENE QUE MANEJAR BAJO LA PLANTILLA DE CodeBlockers();
+// CODIGO HECHO BAJO LA PLANTILLA DE CodeBlockers();
 
 struct dsu {
   vector<int> pad, tam;
