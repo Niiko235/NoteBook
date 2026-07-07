@@ -1,19 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-typedef pair<int, int> ii;
-
-#define vi vector<int>
-#define pb push_back
-#define ff first
-#define ss second
-#define sz(x) int(x.size())
-#define all(x) x.begin(),x.end()
-#define forn(i,n) for(int i = 0; i < n; i++)
-
-// CODIGO HECHO BAJO LA PLANTILLA DE CodeBlockers();
-
 const int MAXN = 1E5 + 5; 
 
 vi ady[MAXN];  //grafo 
@@ -82,26 +66,6 @@ struct ksj {
     }
   }
 };
-
-
-
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);   
-
-    int n, m; cin >> n >> m;
-
-    while(m--){
-      int x, y; cin >> x >> y; x--; y--;
-      ady[x].pb(y);
-      rg[y].pb(x);
-    }
-    
-    ksj ks(n);
-
-
-    return(0);
-}
 
 
 
