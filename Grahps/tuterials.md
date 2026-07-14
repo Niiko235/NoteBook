@@ -32,7 +32,7 @@ Ya con los atributos de nuestra raiz, podemos pasar a calcular su valor. Pero, p
 * el ID del hijo izquierdo = id del padre * 2
 * el ID del hijo derecho = id del padre * 2 + 1
 * El rango del hijo izquierdo = (el i del padre, i + j / 2)
-* El rango del hijo izquierdo = ((i + j / 2) + 1, el J del padre)
+* El rango del hijo derecho = ((i + j / 2) + 1, el J del padre)
 
 ![alt text](../imgs/st-3.png)
 
