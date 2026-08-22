@@ -36,6 +36,74 @@ Ya con los atributos de nuestra raiz, podemos pasar a calcular su valor. Pero, p
 
 ![alt text](../imgs/st-3.png)
 
-Como los hijos directos del la raiz tampoco tienen ningun valor todavia, ellos tienen que calcular tambien el valor de sus hijos primero. La condicion de parada en esta recursión es cuando el i,j son iguales y como se puede apreciar esto solo ocurre cuando es una hoja. Como se puede apreciar, las hojas indicanel indice del valor en nuestro array con el que se tiene que llenar, una vez esto suceda se puede empezar a retornar la recursión y por ende calcular todos los nodos y ahi pa' arriba **sabiendo que en este caso un nodo padre es igual a la suma de los valores de sus hijos**.
+Como los hijos directos del la raiz tampoco tienen ningun valor todavia, ellos tienen que calcular tambien el valor de sus hijos primero. La condicion de parada en esta recursión es cuando el i,j son iguales y como se puede apreciar esto solo ocurre cuando es una hoja. Las hojas indican el indice del valor en nuestro array con el que se tiene que llenar, una vez esto suceda se puede empezar a retornar la recursión y por ende calcular todos los nodos y ahi pa' arriba **sabiendo que en este caso un nodo padre es igual a la suma de los valores de sus hijos**.
+
+Sabemos que las hojas se llenarán con los valores del array, los demas nodos tendrán que calcular primero sus hijos y su valor en este caso que estamos trabajando con suma será: 
+
+````
+arbol[nodo] = arbol[hijoIzq] + arbol[hijoDer]
+````
 
 ![alt text](../imgs/st-4.png)
+
+### Query en rago dentro del arbol
+
+Una vez construido el arbol, podemos hacer consultas en rango, es decir: dada una consulta (l, r) queremos saber la suma de todos los elementos entre esas dos posiciones.
+Para ello recorremos el arbol desde la raiz, y en cada nodo evaluamos 3 posibles casos con respecto al rango del nodo actual (tl, tr) y el rango de la consulta (l, r):
+
+* Cubierto completo: el rango del nodo esta completamente dentro de la consulta, es decir ``l <= tl && r >= tr``. En este caso retornamos directamente el valor del nodo, no necesitamos bajar mas.
+* Sin intersección: el rango del nodo esta completamente fuera de la consulta, es decir ``l > tr || r < tl ``. En este caso retornamos el elemento neutro, que para la suma es 0.
+* Intersección parcial: el rango del nodo se cruza parcialmente con la consulta. En este caso bajamos a ambos hijos y combinamos sus resultados.
+
+Para hacer la query necesitamos los siguientes parametros 
+
+* nodo actual
+* L y R: rango de la consulta -> Valores inmutables
+* tl y tr: rango del nodo actual
+
+#### Ejemplo
+_Al igual que los demas metodos, iniciamos desde la raiz_
+![alt text](../imgs/st-11.png)
+
+_La raiz cae en el ultimo caso que es interseccion parcial, por ende su resultado en la query sera el valor de la query de sus hijos_
+
+![alt text](../imgs/st-12.png)
+
+__
+
+
+
+
+
+### Actualización de nodos 
+
+Antes de iniciar debemos aclarar que la actualización en el segment Tree tradicional solo permite actualizar posiciones en especificos, si un problema nos requiere las consultas por rangos y las actualizaciones tambien, la mejor implementación seria el segment Tree Laz. Dicho esto, podemos aclarar que la actualizacíon en un nodo es reemplazar su valor o hacerle una operación con un valor x, es decir: queremos actualizar la posición 2 con el valor de 5. Actualmente ese nodo tiene un valor de 2, por lo que en la actualización se nos permite reemplazar su valor por 5 o a alguna operación como seria sumarle 5; Si la operación es esta ultima terminariamos con un arbol asi: 
+
+![](../imgs/st-5.png)
+
+Pero, ahora bien ¿Como se produce esta actualziación? Para ello debemos de crear otro metodo en el struct donde nos importa pasarle los siguientes valores 
+
+* Nodo actual
+* Valor con el que vamos a actualizar
+* Nodo que queremos actualizar 
+* L y R del nodo actual
+
+Como sabemos, el nodo en el que iniciaremos sera en la raiz de nuestro arbol, y el L y R que le daremos será el rango de este. 
+
+![](../imgs/st-6.png)
+
+La condicion de parada será la misma que en la construcción del arbol, cuando el. L y R seán iguales aplicaremos la actualización, de otra forma haremos lo siguiente: 
+
+* Si el nodo a actualizar es menor igual al mid  del rango actual, mandaremos a actualizar al hijo izquierdo
+
+* Si el nodo es estrictamente mayor al mid, madamaremos a actualizar al hijo derecho 
+
+* una vez termine la recursion de alguno de los hijos actualzimos el nodo actual con el nuevo valores de sus hijos.
+
+![](../imgs/st-7.png)
+
+Una vez que hallamos el nodo, retornamos la recursión hasta la raiz 
+
+![alt text](../imgs/st-8.png)
+![alt text](../imgs/st-9.png)
+![alt text](../imgs/st-10.png)
